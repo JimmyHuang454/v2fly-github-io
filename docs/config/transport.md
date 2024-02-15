@@ -10,13 +10,13 @@
 
 ```json
 {
-    "tcpSettings": {},
-    "kcpSettings": {},
-    "wsSettings": {},
-    "httpSettings": {},
-    "quicSettings": {},
-    "dsSettings": {},
-    "grpcSettings": {}
+  "tcpSettings": {},
+  "kcpSettings": {},
+  "wsSettings": {},
+  "httpSettings": {},
+  "quicSettings": {},
+  "dsSettings": {},
+  "grpcSettings": {}
 }
 ```
 
@@ -42,6 +42,10 @@
 
 > `dsSettings`: [DomainSocketObject](transport/domainsocket.md)
 
+针对 hy2 连接的配置。
+
+> `hysteriaSettings`: [Hysteria2](transport/hy2.md)
+
 针对 Domain Socket 连接的配置。
 
 > `grpcSettings`: [grpcObject](transport/grpc.md)
@@ -54,23 +58,23 @@
 
 ```json
 {
-    "network": "tcp",
-    "security": "none",
-    "tlsSettings": {},
-    "tcpSettings": {},
-    "kcpSettings": {},
-    "wsSettings": {},
-    "httpSettings": {},
-    "quicSettings": {},
-    "dsSettings": {},
-    "grpcSettings": {},
-    "sockopt": {
-        "mark": 0,
-        "tcpFastOpen": false,
-        "tcpFastOpenQueueLength": 4096,
-        "tproxy": "off",
-        "tcpKeepAliveInterval": 0
-    }
+  "network": "tcp",
+  "security": "none",
+  "tlsSettings": {},
+  "tcpSettings": {},
+  "kcpSettings": {},
+  "wsSettings": {},
+  "httpSettings": {},
+  "quicSettings": {},
+  "dsSettings": {},
+  "grpcSettings": {},
+  "sockopt": {
+    "mark": 0,
+    "tcpFastOpen": false,
+    "tcpFastOpenQueueLength": 4096,
+    "tproxy": "off",
+    "tcpKeepAliveInterval": 0
+  }
 }
 ```
 
@@ -122,16 +126,13 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 
 ```json
 {
-    "serverName": "v2ray.com",
-    "alpn": [
-        "h2",
-        "http/1.1"
-    ],
-    "allowInsecure": false,
-    "disableSystemRoot": false,
-    "certificates": [],
-    "verifyClientCertificate": false,
-    "pinnedPeerCertificateChainSha256": ""
+  "serverName": "v2ray.com",
+  "alpn": ["h2", "http/1.1"],
+  "allowInsecure": false,
+  "disableSystemRoot": false,
+  "certificates": [],
+  "verifyClientCertificate": false,
+  "pinnedPeerCertificateChainSha256": ""
 }
 ```
 
@@ -158,6 +159,7 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 > `pinnedPeerCertificateChainSha256`: \[ string \]
 
 使用标准编码格式表示的远程服务器的证书链的SHA256散列值。在设置后，远程服务器的证书链的散列值必须为列表中的数值之一。(v4.38.0+)
+
 <!--
 此数值可以使用V2Ray自带的 v2ctl 工具的 certChainHash 工具根据服务器的证书链文件进行计算(按照管理，这个文件的名字一般叫 fullchain.pem )。如果没有中间证书（如自签发证书），证书链的散列值和证书本身的散列值相同。-->
 
@@ -172,57 +174,57 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 
 ```json
 {
-    "usage": "encipherment",
-    "certificateFile": "/path/to/certificate.crt",
-    "keyFile": "/path/to/key.key",
-    "certificate": [
-        "-----BEGIN CERTIFICATE-----",
-        "MIICwDCCAaigAwIBAgIRAO16JMdESAuHidFYJAR/7kAwDQYJKoZIhvcNAQELBQAw",
-        "ADAeFw0xODA0MTAxMzU1MTdaFw0xODA0MTAxNTU1MTdaMAAwggEiMA0GCSqGSIb3",
-        "DQEBAQUAA4IBDwAwggEKAoIBAQCs2PX0fFSCjOemmdm9UbOvcLctF94Ox4BpSfJ+",
-        "3lJHwZbvnOFuo56WhQJWrclKoImp/c9veL1J4Bbtam3sW3APkZVEK9UxRQ57HQuw",
-        "OzhV0FD20/0YELou85TwnkTw5l9GVCXT02NG+pGlYsFrxesUHpojdl8tIcn113M5",
-        "pypgDPVmPeeORRf7nseMC6GhvXYM4txJPyenohwegl8DZ6OE5FkSVR5wFQtAhbON",
-        "OAkIVVmw002K2J6pitPuJGOka9PxcCVWhko/W+JCGapcC7O74palwBUuXE1iH+Jp",
-        "noPjGp4qE2ognW3WH/sgQ+rvo20eXb9Um1steaYY8xlxgBsXAgMBAAGjNTAzMA4G",
-        "A1UdDwEB/wQEAwIFoDATBgNVHSUEDDAKBggrBgEFBQcDATAMBgNVHRMBAf8EAjAA",
-        "MA0GCSqGSIb3DQEBCwUAA4IBAQBUd9sGKYemzwPnxtw/vzkV8Q32NILEMlPVqeJU",
-        "7UxVgIODBV6A1b3tOUoktuhmgSSaQxjhYbFAVTD+LUglMUCxNbj56luBRlLLQWo+",
-        "9BUhC/ow393tLmqKcB59qNcwbZER6XT5POYwcaKM75QVqhCJVHJNb1zSEE7Co7iO",
-        "6wIan3lFyjBfYlBEz5vyRWQNIwKfdh5cK1yAu13xGENwmtlSTHiwbjBLXfk+0A/8",
-        "r/2s+sCYUkGZHhj8xY7bJ1zg0FRalP5LrqY+r6BckT1QPDIQKYy615j1LpOtwZe/",
-        "d4q7MD/dkzRDsch7t2cIjM/PYeMuzh87admSyL6hdtK0Nm/Q",
-        "-----END CERTIFICATE-----"
-    ],
-    "key": [
-        "-----BEGIN RSA PRIVATE KEY-----",
-        "MIIEowIBAAKCAQEArNj19HxUgoznppnZvVGzr3C3LRfeDseAaUnyft5SR8GW75zh",
-        "bqOeloUCVq3JSqCJqf3Pb3i9SeAW7Wpt7FtwD5GVRCvVMUUOex0LsDs4VdBQ9tP9",
-        "GBC6LvOU8J5E8OZfRlQl09NjRvqRpWLBa8XrFB6aI3ZfLSHJ9ddzOacqYAz1Zj3n",
-        "jkUX+57HjAuhob12DOLcST8np6IcHoJfA2ejhORZElUecBULQIWzjTgJCFVZsNNN",
-        "itieqYrT7iRjpGvT8XAlVoZKP1viQhmqXAuzu+KWpcAVLlxNYh/iaZ6D4xqeKhNq",
-        "IJ1t1h/7IEPq76NtHl2/VJtbLXmmGPMZcYAbFwIDAQABAoIBAFCgG4phfGIxK9Uw",
-        "qrp+o9xQLYGhQnmOYb27OpwnRCYojSlT+mvLcqwvevnHsr9WxyA+PkZ3AYS2PLue",
-        "C4xW0pzQgdn8wENtPOX8lHkuBocw1rNsCwDwvIguIuliSjI8o3CAy+xVDFgNhWap",
-        "/CMzfQYziB7GlnrM6hH838iiy0dlv4I/HKk+3/YlSYQEvnFokTf7HxbDDmznkJTM",
-        "aPKZ5qbnV+4AcQfcLYJ8QE0ViJ8dVZ7RLwIf7+SG0b0bqloti4+oQXqGtiESUwEW",
-        "/Wzi7oyCbFJoPsFWp1P5+wD7jAGpAd9lPIwPahdr1wl6VwIx9W0XYjoZn71AEaw4",
-        "bK4xUXECgYEA3g2o9WqyrhYSax3pGEdvV2qN0VQhw7Xe+jyy98CELOO2DNbB9QNJ",
-        "8cSSU/PjkxQlgbOJc8DEprdMldN5xI/srlsbQWCj72wXxXnVnh991bI2clwt7oYi",
-        "pcGZwzCrJyFL+QaZmYzLxkxYl1tCiiuqLm+EkjxCWKTX/kKEFb6rtnMCgYEAx0WR",
-        "L8Uue3lXxhXRdBS5QRTBNklkSxtU+2yyXRpvFa7Qam+GghJs5RKfJ9lTvjfM/PxG",
-        "3vhuBliWQOKQbm1ZGLbgGBM505EOP7DikUmH/kzKxIeRo4l64mioKdDwK/4CZtS7",
-        "az0Lq3eS6bq11qL4mEdE6Gn/Y+sqB83GHZYju80CgYABFm4KbbBcW+1RKv9WSBtK",
-        "gVIagV/89moWLa/uuLmtApyEqZSfn5mAHqdc0+f8c2/Pl9KHh50u99zfKv8AsHfH",
-        "TtjuVAvZg10GcZdTQ/I41ruficYL0gpfZ3haVWWxNl+J47di4iapXPxeGWtVA+u8",
-        "eH1cvgDRMFWCgE7nUFzE8wKBgGndUomfZtdgGrp4ouLZk6W4ogD2MpsYNSixkXyW",
-        "64cIbV7uSvZVVZbJMtaXxb6bpIKOgBQ6xTEH5SMpenPAEgJoPVts816rhHdfwK5Q",
-        "8zetklegckYAZtFbqmM0xjOI6bu5rqwFLWr1xo33jF0wDYPQ8RHMJkruB1FIB8V2",
-        "GxvNAoGBAM4g2z8NTPMqX+8IBGkGgqmcYuRQxd3cs7LOSEjF9hPy1it2ZFe/yUKq",
-        "ePa2E8osffK5LBkFzhyQb0WrGC9ijM9E6rv10gyuNjlwXdFJcdqVamxwPUBtxRJR",
-        "cYTY2HRkJXDdtT0Bkc3josE6UUDvwMpO0CfAETQPto1tjNEDhQhT",
-        "-----END RSA PRIVATE KEY-----"
-    ]
+  "usage": "encipherment",
+  "certificateFile": "/path/to/certificate.crt",
+  "keyFile": "/path/to/key.key",
+  "certificate": [
+    "-----BEGIN CERTIFICATE-----",
+    "MIICwDCCAaigAwIBAgIRAO16JMdESAuHidFYJAR/7kAwDQYJKoZIhvcNAQELBQAw",
+    "ADAeFw0xODA0MTAxMzU1MTdaFw0xODA0MTAxNTU1MTdaMAAwggEiMA0GCSqGSIb3",
+    "DQEBAQUAA4IBDwAwggEKAoIBAQCs2PX0fFSCjOemmdm9UbOvcLctF94Ox4BpSfJ+",
+    "3lJHwZbvnOFuo56WhQJWrclKoImp/c9veL1J4Bbtam3sW3APkZVEK9UxRQ57HQuw",
+    "OzhV0FD20/0YELou85TwnkTw5l9GVCXT02NG+pGlYsFrxesUHpojdl8tIcn113M5",
+    "pypgDPVmPeeORRf7nseMC6GhvXYM4txJPyenohwegl8DZ6OE5FkSVR5wFQtAhbON",
+    "OAkIVVmw002K2J6pitPuJGOka9PxcCVWhko/W+JCGapcC7O74palwBUuXE1iH+Jp",
+    "noPjGp4qE2ognW3WH/sgQ+rvo20eXb9Um1steaYY8xlxgBsXAgMBAAGjNTAzMA4G",
+    "A1UdDwEB/wQEAwIFoDATBgNVHSUEDDAKBggrBgEFBQcDATAMBgNVHRMBAf8EAjAA",
+    "MA0GCSqGSIb3DQEBCwUAA4IBAQBUd9sGKYemzwPnxtw/vzkV8Q32NILEMlPVqeJU",
+    "7UxVgIODBV6A1b3tOUoktuhmgSSaQxjhYbFAVTD+LUglMUCxNbj56luBRlLLQWo+",
+    "9BUhC/ow393tLmqKcB59qNcwbZER6XT5POYwcaKM75QVqhCJVHJNb1zSEE7Co7iO",
+    "6wIan3lFyjBfYlBEz5vyRWQNIwKfdh5cK1yAu13xGENwmtlSTHiwbjBLXfk+0A/8",
+    "r/2s+sCYUkGZHhj8xY7bJ1zg0FRalP5LrqY+r6BckT1QPDIQKYy615j1LpOtwZe/",
+    "d4q7MD/dkzRDsch7t2cIjM/PYeMuzh87admSyL6hdtK0Nm/Q",
+    "-----END CERTIFICATE-----"
+  ],
+  "key": [
+    "-----BEGIN RSA PRIVATE KEY-----",
+    "MIIEowIBAAKCAQEArNj19HxUgoznppnZvVGzr3C3LRfeDseAaUnyft5SR8GW75zh",
+    "bqOeloUCVq3JSqCJqf3Pb3i9SeAW7Wpt7FtwD5GVRCvVMUUOex0LsDs4VdBQ9tP9",
+    "GBC6LvOU8J5E8OZfRlQl09NjRvqRpWLBa8XrFB6aI3ZfLSHJ9ddzOacqYAz1Zj3n",
+    "jkUX+57HjAuhob12DOLcST8np6IcHoJfA2ejhORZElUecBULQIWzjTgJCFVZsNNN",
+    "itieqYrT7iRjpGvT8XAlVoZKP1viQhmqXAuzu+KWpcAVLlxNYh/iaZ6D4xqeKhNq",
+    "IJ1t1h/7IEPq76NtHl2/VJtbLXmmGPMZcYAbFwIDAQABAoIBAFCgG4phfGIxK9Uw",
+    "qrp+o9xQLYGhQnmOYb27OpwnRCYojSlT+mvLcqwvevnHsr9WxyA+PkZ3AYS2PLue",
+    "C4xW0pzQgdn8wENtPOX8lHkuBocw1rNsCwDwvIguIuliSjI8o3CAy+xVDFgNhWap",
+    "/CMzfQYziB7GlnrM6hH838iiy0dlv4I/HKk+3/YlSYQEvnFokTf7HxbDDmznkJTM",
+    "aPKZ5qbnV+4AcQfcLYJ8QE0ViJ8dVZ7RLwIf7+SG0b0bqloti4+oQXqGtiESUwEW",
+    "/Wzi7oyCbFJoPsFWp1P5+wD7jAGpAd9lPIwPahdr1wl6VwIx9W0XYjoZn71AEaw4",
+    "bK4xUXECgYEA3g2o9WqyrhYSax3pGEdvV2qN0VQhw7Xe+jyy98CELOO2DNbB9QNJ",
+    "8cSSU/PjkxQlgbOJc8DEprdMldN5xI/srlsbQWCj72wXxXnVnh991bI2clwt7oYi",
+    "pcGZwzCrJyFL+QaZmYzLxkxYl1tCiiuqLm+EkjxCWKTX/kKEFb6rtnMCgYEAx0WR",
+    "L8Uue3lXxhXRdBS5QRTBNklkSxtU+2yyXRpvFa7Qam+GghJs5RKfJ9lTvjfM/PxG",
+    "3vhuBliWQOKQbm1ZGLbgGBM505EOP7DikUmH/kzKxIeRo4l64mioKdDwK/4CZtS7",
+    "az0Lq3eS6bq11qL4mEdE6Gn/Y+sqB83GHZYju80CgYABFm4KbbBcW+1RKv9WSBtK",
+    "gVIagV/89moWLa/uuLmtApyEqZSfn5mAHqdc0+f8c2/Pl9KHh50u99zfKv8AsHfH",
+    "TtjuVAvZg10GcZdTQ/I41ruficYL0gpfZ3haVWWxNl+J47di4iapXPxeGWtVA+u8",
+    "eH1cvgDRMFWCgE7nUFzE8wKBgGndUomfZtdgGrp4ouLZk6W4ogD2MpsYNSixkXyW",
+    "64cIbV7uSvZVVZbJMtaXxb6bpIKOgBQ6xTEH5SMpenPAEgJoPVts816rhHdfwK5Q",
+    "8zetklegckYAZtFbqmM0xjOI6bu5rqwFLWr1xo33jF0wDYPQ8RHMJkruB1FIB8V2",
+    "GxvNAoGBAM4g2z8NTPMqX+8IBGkGgqmcYuRQxd3cs7LOSEjF9hPy1it2ZFe/yUKq",
+    "ePa2E8osffK5LBkFzhyQb0WrGC9ijM9E6rv10gyuNjlwXdFJcdqVamxwPUBtxRJR",
+    "cYTY2HRkJXDdtT0Bkc3josE6UUDvwMpO0CfAETQPto1tjNEDhQhT",
+    "-----END RSA PRIVATE KEY-----"
+  ]
 }
 ```
 
@@ -230,10 +232,10 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 
 证书用途，默认值为 `"encipherment"`。
 
-* `"encipherment"`：证书用于 TLS 认证和加密。
-* `"verify"`：证书用于验证远端 TLS 的证书。当使用此项时，当前证书必须为 CA 证书。
-* `"issue"`：证书用于签发其它证书。当使用此项时，当前证书必须为 CA 证书。
-* `"verifyclient"`：用于验证客户端身份的证书颁发机构证书。当使用此项时，当前证书必须为 CA 证书。 (4.42.0+)
+- `"encipherment"`：证书用于 TLS 认证和加密。
+- `"verify"`：证书用于验证远端 TLS 的证书。当使用此项时，当前证书必须为 CA 证书。
+- `"issue"`：证书用于签发其它证书。当使用此项时，当前证书必须为 CA 证书。
+- `"verifyclient"`：用于验证客户端身份的证书颁发机构证书。当使用此项时，当前证书必须为 CA 证书。 (4.42.0+)
 
 :::tip
 在 Windows 平台上可以将自签名的 CA 证书安装到系统中，即可验证远端 TLS 的证书。
@@ -273,11 +275,11 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 
 ```json
 {
-    "mark": 0,
-    "tcpFastOpen": false,
-    "tcpFastOpenQueueLength": 4096,
-    "tproxy": "off",
-    "tcpKeepAliveInterval": 0
+  "mark": 0,
+  "tcpFastOpen": false,
+  "tcpFastOpenQueueLength": 4096,
+  "tproxy": "off",
+  "tcpKeepAliveInterval": 0
 }
 ```
 
@@ -285,18 +287,18 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 
 一个整数。当其值非零时，在出站连接上标记 SO_MARK。
 
-* 仅适用于 Linux 系统。
-* 需要 CAP_NET_ADMIN 权限。
+- 仅适用于 Linux 系统。
+- 需要 CAP_NET_ADMIN 权限。
 
 > `tcpFastOpen`: true | false
 
 是否启用 [TCP Fast Open](https://zh.wikipedia.org/wiki/TCP%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80)。当其值为 `true` 时，强制开启 TFO；当其值为 `false` 时，强制关闭 TFO；当此项不存在时，使用系统默认设置。可用于入站出站连接。
 
-* 仅在以下版本（或更新版本）的操作系统中可用:
-  * Windows 10 (1604)
-  * Mac OS 10.11 / iOS 9
-  * Linux 3.16：系统已默认开启，无需配置。
-  * FreeBSD 10.3
+- 仅在以下版本（或更新版本）的操作系统中可用:
+  - Windows 10 (1604)
+  - Mac OS 10.11 / iOS 9
+  - Linux 3.16：系统已默认开启，无需配置。
+  - FreeBSD 10.3
 
 > `tcpFastOpenQueueLength`: number
 
@@ -306,11 +308,11 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 
 是否开启透明代理（仅适用于 Linux）。
 
-* `"redirect"`：使用 Redirect 模式的透明代理。支持 TCP 和 UDP 连接。
-* `"tproxy"`：使用 TProxy 模式的透明代理。支持 TCP 和 UDP 连接。
-* `"off"`：关闭透明代理。
+- `"redirect"`：使用 Redirect 模式的透明代理。支持 TCP 和 UDP 连接。
+- `"tproxy"`：使用 TProxy 模式的透明代理。支持 TCP 和 UDP 连接。
+- `"off"`：关闭透明代理。
 
-透明代理需要 Root 或 CAP\_NET\_ADMIN 权限。
+透明代理需要 Root 或 CAP_NET_ADMIN 权限。
 
 :::tip
 当 [Dokodemo-door](protocols/dokodemo.md) 中指定了 `followRedirect`，且 `sockopt.tproxy` 为空时，`sockopt.tproxy` 的值会被设为 `"redirect"`。
