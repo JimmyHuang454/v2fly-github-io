@@ -1,6 +1,6 @@
 # Hysteria2
 
-魔改 quic-go 拥塞控制的代理协议。
+魔改 [quic-go](https://github.com/quic-go/quic-go) 拥塞控制的代理协议。
 
 1. 得益于 QUIC 的全加密和填充，大大地增加中间防火墙嗅探的负担
 2. 强制要求使用 TLS 1.3
@@ -41,7 +41,7 @@ stream.hysteria
 
 可选：
 
-- `uou` UDP over UDP; 使用 QUIC 的 UDP Extension 功能，具有原生 UDP 的全部特点，并数据被加密保护 （默认）
+- `uou` UDP over UDP; 使用 QUIC 的 UDP Extension 功能，具有原生 UDP 的全部特点，需要分片，并数据被加密保护 （默认）
 - `uos` UDP over Stream; 每一个 UDP 都会安排在一条 Stream 上
 
 若 Server 不支持 `uos` 时，回退使用`uou`。

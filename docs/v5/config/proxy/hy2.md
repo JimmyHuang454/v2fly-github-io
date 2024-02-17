@@ -20,4 +20,10 @@ outbound.hysteria2
 
 ## Hysteria2 兼容
 
-若要使用与官方兼容的 Hysteria2，请把传输层也设置成 Hysteria2，并设置密码
+若要使用与[官方版](https://hysteria.network/)兼容的 Hysteria2，请把传输层也设置成 Hysteria2，并设置密码
+
+:::tip
+配置 TLS 时，可以使用 allowInsecure 和系统根证书，暂不支持自签证书和 PinnedPeerCertificateChainSha256
+
+若不配置 TLS，则默认使用 allowInsecure
+:::
