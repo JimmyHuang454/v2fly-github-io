@@ -8,24 +8,24 @@
 
 ## 协议修改说明
 
-1. 在 V2ray 中，Hysteria2 被分成了两个部分：
+1. 在 V2ray 中，Hysteria2 TCP 被分成了两个部分：
 
 - `TLS + HTTP3` 传输层；包含认证、协商、拥塞控制等
 - `Proxy Header` 代理层；包含解析目标地址、Padding 等
 
-Hysteria2 可以作为传输层与 Vmess、Shadowsocks、Trojan 搭配使用，也可以兼用官方版。
+Hysteria2 可以作为传输层与 Vmess、Shadowsocks、Trojan 搭配使用，也可以兼用官方版。若把 Hysteria2 作为传输层，只能使用其 Stream，也就是说传输 UDP 时就是 UDP Over Stream。
 
-2. 协商时增加了选择 UDP 模式
+2. Padding 目前为固定长度和内容，不影响实际使用和兼容性
 
-```
-:status: 233 HyOK
-Hysteria-UDP: [true/false]
-Hysteria-UDP-Mode: [string]     // 新增
-Hysteria-CC-RX: [uint/"auto"]
-Hysteria-Padding: [string]
-```
+<!-- 3. 协商时增加了选择 UDP 模式 -->
 
-3. Padding 目前为固定长度和内容，不影响实际使用和兼容性
+<!-- ``` -->
+<!-- :status: 233 HyOK -->
+<!-- Hysteria-UDP: [true/false] -->
+<!-- Hysteria-UDP-Mode: [string]     // 新增 -->
+<!-- Hysteria-CC-RX: [uint/"auto"] -->
+<!-- Hysteria-Padding: [string] -->
+<!-- ``` -->
 
 ## Hysteria2 Stream
 
