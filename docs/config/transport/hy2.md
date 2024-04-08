@@ -8,24 +8,14 @@
 
 ## 协议修改说明
 
-1. 在 V2ray 中，Hysteria2 被分成了两个部分：
+- 在 V2ray 中，Hysteria2 TCP 被分成了两个部分：
 
-- `TLS + HTTP3` 传输层；包含认证、协商、拥塞控制等
-- `Proxy Header` 代理层；包含解析目标地址、Padding 等
+1. `TLS + HTTP3` 传输层；包含认证、协商、拥塞控制等
+2. `Proxy Header` 代理层；包含解析目标地址、Padding 等
 
-Hysteria2 可以作为传输层与 Vmess、Shadowsocks、Trojan 搭配使用，也可以兼用官方版。
+Hysteria2 可以作为传输层与 Vmess、Shadowsocks、Trojan 搭配使用，也可以兼用官方版。若把 Hysteria2 作为传输层，只能使用其 Stream，也就是说传输 UDP 时就是 UDP Over Stream。
 
-2. 协商时增加了选择 UDP 模式
-
-```
-:status: 233 HyOK
-Hysteria-UDP: [true/false]
-Hysteria-UDP-Mode: [string]     // 新增
-Hysteria-CC-RX: [uint/"auto"]
-Hysteria-Padding: [string]
-```
-
-3. Padding 目前为固定长度和内容，不影响实际使用和兼容性
+- Padding 目前为固定长度和内容，不影响实际使用和兼容性
 
 ## Hysteria2Object
 
@@ -34,7 +24,7 @@ Hysteria-Padding: [string]
 ```json
 {
   "password": "password",
-  "udp_mode": "uou",
+  "use_udp_extension": true,
   "congestion": {
     "type": "bbr",
     "up_mbps": 50,
@@ -47,20 +37,13 @@ Hysteria-Padding: [string]
 
 认证密码，留空为不认证
 
-> `udp_mode`: string
+> `use_udp_extension`: bool
 
-需要 Server 也同时开启 UDP 功能。
-
-可选：
-
-- `uou` UDP over UDP; 使用 QUIC 的 UDP Extension 功能，具有原生 UDP 的全部特点，并数据被加密保护 （默认）
-- `uos` UDP over Stream; 每一个 UDP 都会安排在一条 Stream 上
-
-若 Server 不支持 `uos` 时，回退使用`uou`。
+是否启用 UDP，默认不启用
 
 > `congestion`: [CongestionObject](#CongestionObject)
 
-选择拥塞算法，留空默认为`bbr`
+拥塞算法配置
 
 ## CongestionObject
 

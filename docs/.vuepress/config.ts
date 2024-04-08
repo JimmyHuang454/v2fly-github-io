@@ -122,6 +122,7 @@ export default defineUserConfig({
                                 '/config/protocols/trojan',
                                 '/config/protocols/vless',
                                 '/config/protocols/loopback',
+                                '/config/protocols/hy2',
                             ],
                         },
                         {
